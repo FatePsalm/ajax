@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+//用JSON语法表示一个对象
+function f1() {
+	var obj={"code":"600877","name":"中国嘉陵","prive":10};
+	alert(obj.name);
+}
+function f2() {
+	var obj={"company":"达内科技","addr":{
+		"city":"北京","street":"北三环西路","room":708
+	}};
+	alert(obj.addr.street);
+}
+//使用json语法表示对象组成的数组
+function f3() {
+	var arr=[{"name":"楚乔","age":22},{"name":"洛河","age":42}]
+	alert(arr[1].name);
+}
+//将json字符串转化为javascript对象
+function f4() {
+	var str='{"name":"楚乔","age":22}';
+	//使用的是javasciript内置对象json提供的方法来转化
+	var obj=JSON.parse(str);
+	
+	alert(obj.name);
+}
+function f5() {
+	var str='[{"name":"楚乔","age":22},{"name":"洛河","age":42}]';
+	//使用的是javasciript内置对象json提供的方法来转化
+	var obj=JSON.parse(str);
+	
+	alert(obj[1].name);
+}
+</script>
+</head>
+<body>
+	<a href="javascript:f1();">ClickMe</a><br/>
+	<a href="javascript:f2();">ClickMe</a><br/>
+	<a href="javascript:f3();">ClickMe</a><br/>
+	<a href="javascript:f4();">ClickMe</a><br/>
+	<a href="javascript:f5]();">ClickMe</a><br/>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript">
+function showNumber() {
+	//第一获取ajax对象
+	var xhr=getAjax();
+	
+	//第二发送请求
+	//xhr.open('get','check.do?uname='+$F('uname'),true);
+	xhr.open('post','number.do',true);
+	xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+	xhr.onreadystatechange=function(){
+		//处理服务器返回的数据
+		if(xhr.readyState==4&&xhr.status==200){
+			var txt=xhr.responseText;
+			$('msg').innerHTML=txt;
+		}
+	};
+	xhr.send(null);
+}
+</script>
+</head>
+<body style="font-size:30px;font-style:italic;">
+	<a href="javascript:showNumber();">点击这里显示一个随机数</a><br/><span id="msg"></span>
+</body>
+</html>

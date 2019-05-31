@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//页面加载后
+	var cities;
+	window.onload=function(){
+		//模拟查询所有城市
+		cities=[
+		            ["石家庄","廊坊","保定"],
+		            ["济南","青岛","烟台"],
+		            ["南京","徐州","无锡"]
+		            ];
+	}
+	function chg() {
+		console.log(1);
+		//获取省份
+		var p=document.getElementById("province");
+		console.log(p.value);
+		var index=p.value;
+		//获取该省份所对应的城市
+		var pcities=cities[index];
+		//删除旧的城市
+		var c=document.getElementById("city");
+		
+		/*
+		var options=c.getElementsByTagName("option");
+		for(var i=options.length-1;i>0;i--){
+			c.removeChild(options[i]);
+		}
+		*/
+		c.innerHTML="<option>请选择</option>";
+		
+		//追加新城市
+		if(pcities){
+			for(var i=0;i<pcities.length;i++){
+				var option=document.createElement("option");
+				option.innerHTML=pcities[i];
+				c.appendChild(option);
+			}
+		}
+	}	
+
+</script>
+
+</head>
+<body>
+	省：
+	<select onchange="chg();" id="province">
+		<option value=-1>请选择</option>
+		<option value=0>河北省</option>
+		<option value=1>山东省</option>
+		<option value=2>江苏省</option>
+	</select>
+	市：
+	<select id="city">
+		<option>请选择</option>
+	</select>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

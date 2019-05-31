@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript">
+function getcity() {
+	//第一获取ajax对象
+	var xhr=getAjax();
+	
+	//第二发送请求
+	//xhr.open('get','check.do?uname='+$F('uname'),true);
+	xhr.open('post','getCity.do',true);
+	xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+	xhr.onreadystatechange=function(){
+		//处理服务器返回的数据
+		if(xhr.readyState==4&&xhr.status==200){
+			var txt=xhr.responseText;
+			//$('msg').innerHTML=txt;
+			var citys=txt.substring(1,txt.lastIndexOf("]"));
+			var city=citys.split(",");
+			//添加option到S2,注意,添加之前要先清空下拉列表
+			console.log(city);
+			$('s2').innerHTML='';
+			for(var i=0;i<city.length;i++){
+				//将op添加到s2下面
+				/*
+				  下拉列表(select)的options属性是一个数组,里面存放的是该列表中的所有的Option对象
+				*/
+				$('s2').options[i]=new Option(city[i],i);
+				
+			}
+		}
+	};
+	xhr.send('province='+$F('s1'));
+}
+</script>
+</head>
+<body style="font-size:30px;">
+	<select id="s1" style="width:150px;" onchange="getcity();">
+		<option value="default">请选择</option>
+		<option value="bj">北京</option>
+		<option value="hn">湖南</option>
+		<option value="sd">山东</option>
+	</select>
+	<select id="s2" style="width:150px;">
+	</select>
+	<span id="msg"></span>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

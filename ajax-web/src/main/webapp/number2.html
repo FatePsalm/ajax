@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+	function showNumber() {
+		console.log(1);
+		$.ajax({
+			"url":"number.do","type":"get",
+			"dataType":"json","success":function(data){
+				//$('#msg').empty();
+				$('#msg').text(data);
+				console.log(data);
+				
+			}
+		});
+	}
+
+</script>
+</head>
+<body style="font-size:30px;font-style:italic;">
+	<a href="javascript:showNumber();">点击这里显示一个随机数</a><br/><span id="msg"></span>
+</body>
+</html>

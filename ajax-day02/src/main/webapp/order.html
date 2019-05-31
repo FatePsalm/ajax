@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$('#b1').click(f1);
+	});
+	function f1() {
+		//serialize表单异步提交时,会生成一个由各个表单域组成的一个请求字符串
+		$('#h1').load('saveInfo.do',$('#form1').serialize()
+				);
+	}
+</script>
+</head>
+<body>
+	<h1 id="h1"></h1>
+	<form id="form1">
+		<fieldset>
+			<legend>送货信息</legend>
+			收货人:<input name="name"/><br/>
+			电话:<input name="phone"/><br/>
+			地址:<input name="address"/><br/>
+			<input id="b1" type="button" value="确认"/>
+		</fieldset>
+	</form>
+</body>
+</html>

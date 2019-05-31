@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript">
+	function check() {
+		//第一获取ajax对象
+		var xhr=getAjax();
+		//第二发送请求
+		var uri='check.do?uname='+$F('uname');
+		xhr.open('get',encodeURI(uri),true);
+		xhr.onreadystatechange=function(){
+			//处理服务器返回的数据
+			if(xhr.readyState==4&&xhr.status==200){
+				var txt=xhr.responseText;
+				$('msg').innerHTML=txt;
+			}
+		};
+		xhr.send(null);
+	}
+	
+</script>
+</head>
+<body style="font-size:30px;">
+	<form action="">
+		<fieldset>
+			<legend>注册</legend>
+			用户名:<input id="uname" name="uname" onblur="check()"/><span id="msg" style="color:red;"></span><br/>
+			密码:<input type="password" name="pwd"/><br/>
+			<input type="submit" value="确定">
+		</fieldset>
+	</form>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/ajax.js"></script>
+<script type="text/javascript">
+function getcity() {
+	//第一获取ajax对象
+	var xhr=getAjax();
+	
+	//第二发送请求
+	//xhr.open('get','check.do?uname='+$F('uname'),true);
+	xhr.open('post','getCity.do',true);
+	xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+	xhr.onreadystatechange=function(){
+		//处理服务器返回的数据
+		if(xhr.readyState==4&&xhr.status==200){
+			var txt=xhr.responseText;
+			var c=$("s2");
+			c.innerHTML="<option>请选择</option>";
+			//$('msg').innerHTML=txt;
+			var citys=txt.substring(1,txt.lastIndexOf("]"));
+			var city=citys.split(",");
+			for(var i=0;i<city.length;i++){
+				var option=document.createElement("option");
+				option.innerHTML=city[i];
+				option.value=i;
+				c.appendChild(option);
+			}
+		}
+	};
+	xhr.send('province='+$F('s1'));
+}
+</script>
+</head>
+<body style="font-size:30px;">
+	<select id="s1" style="width:150px;" onchange="getcity();">
+		<option value="default">请选择</option>
+		<option value="bj">北京</option>
+		<option value="hn">湖南</option>
+		<option value="sd">山东</option>
+	</select>
+	<select id="s2" style="width:150px;">
+		<option>请选择</option>
+	</select>
+	<span id="msg"></span>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
